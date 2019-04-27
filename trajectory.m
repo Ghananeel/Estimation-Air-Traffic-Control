@@ -10,7 +10,7 @@ function x = trajectory()
     x4 = ct(-1, 201, 245, x3(:,end), dt);
     x5 = ct(1, 246, 335, x4(:,end), dt);
     x6 = ct(-1, 336, 380, x5(:,end), dt);
-    x7 = const_vel(381 ,500 ,x6(:,end),dt);
+    x7 = const_vel(381 ,501 ,x6(:,end),dt);
     
     % Concatenate all maneuvers
     x = [x1,x2,x3,x4,x5,x6,x7];
