@@ -47,12 +47,12 @@ function [x,P] = Kalman_filter(xi,eta,T,sigma_r,sigma_t,b,z)
     
     % Run Kalman Filter 
     for i = 2:size(xi,2)-1
-        % State and measurement prediction Prediction
+        % State Covariance and Measurement prediction Prediction
         x(:,i) = F*x(:,i-1) + G*(randn(2,1)*sqrt(4));
         P(:,:,i) = F*P(:,:,i-1)*F' + Q.*4;
         z_pred = H*x(:,i);
         
-        % Measurement Residual
+        % Measurement Residual, Innovation Covariance, Filter Gain
         nu = [xi(i+1); eta(i+1)] - z_pred;
         S = feval(R,z(1,i+1),z(2,i+1)) + H*P(:,:,i)*H';
         W = P(:,:,i)*H'*inv(S);
